@@ -49,7 +49,13 @@ export interface GenerationResult {
   rejectedWords: RejectedWord[]
 }
 
-export const DEFAULT_CONFIG: Omit<PuzzleConfig, 'words'> = {
+/** Todo lo configurable menos las palabras: lo que muestran los controles de la UI. */
+export type PuzzleSettings = Omit<PuzzleConfig, 'words'>
+
+export const MIN_SIZE = 5
+export const MAX_SIZE = 30
+
+export const DEFAULT_CONFIG: PuzzleSettings = {
   size: 15,
   directions: ['horizontal', 'vertical', 'diagonalDown', 'diagonalUp'],
   allowReversed: false,
