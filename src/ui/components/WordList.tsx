@@ -15,11 +15,11 @@ export function WordList({ placements, showSolution }: WordListProps) {
     .sort((a, b) => a.word.localeCompare(b.word, 'es'))
 
   return (
-    <ul aria-label="Palabras a buscar" className="flex flex-wrap gap-2">
+    <ul aria-label="Palabras a buscar" className="flex flex-wrap gap-2 xl:flex-col xl:items-start">
       {words.map(({ word, color }) => (
         <li
           key={word}
-          className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-mono text-sm font-medium"
+          className="flex items-center gap-2 rounded-full bg-surface-muted px-3 py-1 font-mono text-sm font-medium"
         >
           {showSolution && <span aria-hidden className="size-2.5 rounded-full" style={{ backgroundColor: color }} />}
           {word}

@@ -21,6 +21,8 @@ export function usePuzzleGenerator(random: RandomFn = Math.random) {
   const [settings, setSettings] = useState<PuzzleSettings>(DEFAULT_CONFIG)
   const [result, setResult] = useState<GenerationResult | null>(null)
   const [showSolution, setShowSolution] = useState(false)
+  /** Cuántas sopas se han generado. La UI lo usa como "key" para animar cada sopa nueva. */
+  const [generationCount, setGenerationCount] = useState(0)
 
   const words = useMemo(() => parseWordList(wordsText), [wordsText])
   const canGenerate = words.length > 0 && settings.directions.length > 0
@@ -38,6 +40,7 @@ export function usePuzzleGenerator(random: RandomFn = Math.random) {
     if (!canGenerate) return
     setResult(generatePuzzle({ ...settings, words }, random))
     setShowSolution(false) // una sopa nueva empieza sin resolver
+    setGenerationCount((count) => count + 1)
   }, [canGenerate, settings, words, random])
 
   const toggleSolution = useCallback(() => setShowSolution((visible) => !visible), [])
@@ -51,6 +54,7 @@ export function usePuzzleGenerator(random: RandomFn = Math.random) {
     canGenerate,
     generate,
     result,
+    generationCount,
     showSolution,
     toggleSolution,
   }

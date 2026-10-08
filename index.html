@@ -4,8 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Word Search Generator</title>
-    <meta name="description" content="Genera sopas de letras personalizadas a partir de tu lista de palabras." />
+    <title>Sopa4All · Generador de sopas de letras</title>
+    <meta name="description" content="Genera sopas de letras personalizadas a partir de tu lista de palabras y expórtalas a PDF." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700&display=swap"
+    />
+    <script>
+      // Aplica el tema antes de pintar la página, para que no "parpadee" en blanco al cargar en modo oscuro.
+      try {
+        const saved = localStorage.getItem('sopa4all-theme')
+        if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        }
+      } catch {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -48,7 +48,7 @@ function drawPage(doc: JsPdf, puzzle: Puzzle, layout: PdfLayout, title: string, 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(8)
   doc.setTextColor(150)
-  doc.text('Generado con Word Search Generator', PAGE.width / 2, PAGE.height - 8, { align: 'center' })
+  doc.text('Generado con Sopa4All', PAGE.width / 2, PAGE.height - 8, { align: 'center' })
 }
 
 function drawGrid(doc: JsPdf, puzzle: Puzzle, { gridX, gridY, gridSide, cellSize }: PdfLayout) {

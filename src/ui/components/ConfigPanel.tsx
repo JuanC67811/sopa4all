@@ -27,7 +27,7 @@ export function ConfigPanel({ settings, onChange }: ConfigPanelProps) {
       <div className="space-y-2">
         <label htmlFor="grid-size" className="flex justify-between font-medium">
           Tamaño
-          <span className="font-mono text-slate-600">
+          <span className="font-mono text-sm text-muted">
             {settings.size} × {settings.size}
           </span>
         </label>
@@ -38,18 +38,21 @@ export function ConfigPanel({ settings, onChange }: ConfigPanelProps) {
           max={MAX_SIZE}
           value={settings.size}
           onChange={(event) => onChange({ size: Number(event.target.value) })}
-          className="w-full accent-blue-600"
+          className="w-full accent-brand"
         />
       </div>
 
-      <fieldset className="space-y-2">
+      <fieldset>
         <legend className="mb-2 font-medium">Direcciones</legend>
         <div className="grid grid-cols-2 gap-2">
           {ALL_DIRECTIONS.map((direction) => (
-            <label key={direction} className="flex items-center gap-2 text-sm">
+            <label
+              key={direction}
+              className="flex cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-sm ring-1 ring-line transition-colors has-checked:bg-brand-soft has-checked:ring-brand/40"
+            >
               <input
                 type="checkbox"
-                className="size-4 accent-blue-600"
+                className="size-4 accent-brand"
                 checked={settings.directions.includes(direction)}
                 onChange={() => toggleDirection(direction)}
               />
@@ -58,18 +61,18 @@ export function ConfigPanel({ settings, onChange }: ConfigPanelProps) {
           ))}
         </div>
         {settings.directions.length === 0 && (
-          <p className="text-sm text-red-600">Elige al menos una dirección.</p>
+          <p className="mt-2 text-sm text-danger">Elige al menos una dirección.</p>
         )}
       </fieldset>
 
-      <label className="flex items-center gap-2 text-sm">
+      <label className="flex cursor-pointer items-center gap-2 text-sm">
         <input
           type="checkbox"
-          className="size-4 accent-blue-600"
+          className="size-4 accent-brand"
           checked={settings.allowReversed}
           onChange={(event) => onChange({ allowReversed: event.target.checked })}
         />
-        Permitir palabras al revés <span className="text-slate-500">(más difícil)</span>
+        Permitir palabras al revés <span className="text-muted">(más difícil)</span>
       </label>
     </div>
   )

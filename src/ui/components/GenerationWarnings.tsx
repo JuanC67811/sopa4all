@@ -16,7 +16,10 @@ export function GenerationWarnings({ rejectedWords, unplacedWords }: GenerationW
   if (rejectedWords.length === 0 && unplacedWords.length === 0) return null
 
   return (
-    <div role="status" className="space-y-1 rounded-lg bg-amber-50 p-4 text-sm text-amber-900 ring-1 ring-amber-200">
+    <div
+      role="status"
+      className="space-y-1 rounded-xl bg-warn-surface p-4 text-sm text-warn-fg ring-1 ring-warn-line"
+    >
       {rejectedWords.map(({ word, reason }) => (
         <p key={`${word}-${reason}`}>
           <strong>{word}</strong> se descartó porque {REASON_TEXT[reason]}.

@@ -48,6 +48,31 @@ describe('App', () => {
     expect(screen.queryByLabelText('Solución')).toBeNull()
   })
 
+  it('genera con Ctrl + Enter desde la caja de palabras', () => {
+    render(<App />)
+    typeWords('sol')
+    fireEvent.keyDown(screen.getByLabelText('Palabras'), { key: 'Enter', ctrlKey: true })
+    expect(screen.getAllByRole('gridcell')).toHaveLength(15 * 15)
+  })
+
+  it('el estado vacío carga palabras de ejemplo', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /palabras de ejemplo/i }))
+    expect(screen.getByLabelText<HTMLTextAreaElement>('Palabras').value).toContain('Estrella')
+  })
+
+  it('cambia entre modo claro y oscuro', () => {
+    render(<App />)
+    const html = document.documentElement
+    const startedDark = html.classList.contains('dark')
+
+    fireEvent.click(screen.getByRole('button', { name: /activar modo/i }))
+    expect(html.classList.contains('dark')).toBe(!startedDark)
+
+    fireEvent.click(screen.getByRole('button', { name: /activar modo/i }))
+    expect(html.classList.contains('dark')).toBe(startedDark)
+  })
+
   it('avisa de las palabras descartadas', () => {
     render(<App />)
     typeWords('sol\nsol\nr2d2')

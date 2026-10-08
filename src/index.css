@@ -1,1 +1,83 @@
 @import "tailwindcss";
+
+/* El modo oscuro se activa con la clase "dark" en <html> (ver useTheme), no solo con el sistema. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens: los componentes usan nombres con significado (bg-surface, text-muted, bg-brand...)
+ * en vez de colores sueltos. Cambiar el tema = cambiar estas variables, sin tocar ningún componente.
+ */
+:root {
+  --page: #f6f5fb;
+  --surface: #ffffff;
+  --surface-muted: #f1effa;
+  --line: #e3e0f0;
+  --fg: #1c1830;
+  --muted: #6b6685;
+  --brand: #6d28d9;
+  --brand-hover: #5b21b6;
+  --brand-soft: #ede9fe;
+  --on-brand: #ffffff;
+  --warn-surface: #fffbeb;
+  --warn-fg: #78350f;
+  --warn-line: #fde68a;
+  --danger: #dc2626;
+  color-scheme: light;
+}
+
+.dark {
+  --page: #0f0d17;
+  --surface: #1a1726;
+  --surface-muted: #241f35;
+  --line: #332d4a;
+  --fg: #ece9f7;
+  --muted: #9a94b5;
+  --brand: #a78bfa;
+  --brand-hover: #c4b5fd;
+  --brand-soft: #2e2550;
+  --on-brand: #1a1033;
+  --warn-surface: #2a2010;
+  --warn-fg: #fcd34d;
+  --warn-line: #5a4513;
+  --danger: #f87171;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-warn-surface: var(--warn-surface);
+  --color-warn-fg: var(--warn-fg);
+  --color-warn-line: var(--warn-line);
+  --color-danger: var(--danger);
+}
+
+@theme {
+  --animate-pop-in: pop-in 350ms cubic-bezier(0.2, 0.8, 0.3, 1.2);
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.97) translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+body {
+  @apply bg-page text-fg antialiased;
+}
