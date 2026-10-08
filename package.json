@@ -1,7 +1,7 @@
 {
   "name": "sopa4all",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -28,5 +28,6 @@
     "typescript": "~6.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.3"
-  }
+  },
+  "description": "Generador de sopas de letras personalizadas con exportación a PDF"
 }
