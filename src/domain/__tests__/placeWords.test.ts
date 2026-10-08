@@ -3,17 +3,9 @@ import { getPlacementCells } from '../directions'
 import type { Direction, Placement } from '../models'
 import { canPlace, createEmptyGrid, lettersOf, placeWords, type WorkingGrid } from '../placeWords'
 import { shuffle } from '../shuffle'
+import { seededRandom } from './helpers'
 
 const ALL_DIRECTIONS: Direction[] = ['horizontal', 'vertical', 'diagonalDown', 'diagonalUp']
-
-/** Generador pseudoaleatorio con semilla: los tests dan siempre el mismo resultado. */
-function seededRandom(seed: number) {
-  let state = seed
-  return () => {
-    state = (state * 1664525 + 1013904223) % 2 ** 32
-    return state / 2 ** 32
-  }
-}
 
 /** Lee de la cuadrícula las letras que ocupa una palabra colocada. */
 function readFromGrid(grid: WorkingGrid, placement: Placement): string {
