@@ -1,4 +1,6 @@
+import { usePdfExport } from './application/usePdfExport'
 import { usePuzzleGenerator } from './application/usePuzzleGenerator'
+import { jsPdfExporter } from './infrastructure/pdf/jsPdfExporter'
 import { Card } from './ui/components/Card'
 import { ConfigPanel } from './ui/components/ConfigPanel'
 import { GenerationWarnings } from './ui/components/GenerationWarnings'
@@ -20,6 +22,8 @@ function App() {
     showSolution,
     toggleSolution,
   } = usePuzzleGenerator()
+  // App es el único sitio que sabe que el PDF se hace con jsPDF: aquí se "enchufa" la implementación.
+  const pdf = usePdfExport(jsPdfExporter)
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900">
@@ -55,7 +59,15 @@ function App() {
         {result ? (
           <div className="space-y-6">
             <GenerationWarnings rejectedWords={result.rejectedWords} unplacedWords={result.unplacedWords} />
-            <Toolbar showSolution={showSolution} onToggleSolution={toggleSolution} />
+            <Toolbar
+              showSolution={showSolution}
+              onToggleSolution={toggleSolution}
+              includeSolutionInPdf={pdf.includeSolution}
+              onIncludeSolutionInPdfChange={pdf.setIncludeSolution}
+              isExporting={pdf.isExporting}
+              exportError={pdf.error}
+              onExportPdf={() => pdf.exportPdf(result.puzzle)}
+            />
             <Card>
               <PuzzleGrid
                 grid={result.puzzle.grid}

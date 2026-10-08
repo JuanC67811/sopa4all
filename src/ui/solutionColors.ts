@@ -1,8 +1,6 @@
-/**
- * Un color distinto para cada palabra de la solución.
- * Saltar 137,5° (el "ángulo de oro") por la rueda de color reparte bien los tonos
- * aunque haya muchas palabras: dos colores seguidos nunca se parecen.
- */
+import { solutionHue } from '../domain/solution'
+
+/** Color CSS de la línea de cada palabra de la solución. */
 export function solutionColor(index: number): string {
-  return `hsl(${(index * 137.5) % 360} 80% 55%)`
+  return `hsl(${solutionHue(index)} 80% 55%)`
 }
