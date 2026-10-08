@@ -34,6 +34,20 @@ describe('App', () => {
     expect(screen.getAllByRole('gridcell')).toHaveLength(8 * 8)
   })
 
+  it('dibuja una línea por palabra al mostrar la solución', () => {
+    render(<App />)
+    typeWords('sol\nluna\nmar')
+    clickGenerate()
+    expect(screen.queryByLabelText('Solución')).toBeNull()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Mostrar solución' }))
+    const lines = screen.getByLabelText('Solución').querySelectorAll('line')
+    expect([...lines].map((line) => line.textContent).sort()).toEqual(['LUNA', 'MAR', 'SOL'])
+
+    fireEvent.click(screen.getByRole('button', { name: 'Ocultar solución' }))
+    expect(screen.queryByLabelText('Solución')).toBeNull()
+  })
+
   it('avisa de las palabras descartadas', () => {
     render(<App />)
     typeWords('sol\nsol\nr2d2')

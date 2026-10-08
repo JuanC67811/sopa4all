@@ -3,12 +3,23 @@ import { Card } from './ui/components/Card'
 import { ConfigPanel } from './ui/components/ConfigPanel'
 import { GenerationWarnings } from './ui/components/GenerationWarnings'
 import { PuzzleGrid } from './ui/components/PuzzleGrid'
+import { Toolbar } from './ui/components/Toolbar'
 import { WordList } from './ui/components/WordList'
 import { WordListInput } from './ui/components/WordListInput'
 
 function App() {
-  const { wordsText, setWordsText, words, settings, updateSettings, canGenerate, generate, result } =
-    usePuzzleGenerator()
+  const {
+    wordsText,
+    setWordsText,
+    words,
+    settings,
+    updateSettings,
+    canGenerate,
+    generate,
+    result,
+    showSolution,
+    toggleSolution,
+  } = usePuzzleGenerator()
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900">
@@ -44,11 +55,15 @@ function App() {
         {result ? (
           <div className="space-y-6">
             <GenerationWarnings rejectedWords={result.rejectedWords} unplacedWords={result.unplacedWords} />
+            <Toolbar showSolution={showSolution} onToggleSolution={toggleSolution} />
             <Card>
-              <PuzzleGrid grid={result.puzzle.grid} />
+              <PuzzleGrid
+                grid={result.puzzle.grid}
+                solution={showSolution ? result.puzzle.placements : undefined}
+              />
             </Card>
             <Card title={`Palabras a buscar (${result.puzzle.placements.length})`}>
-              <WordList placements={result.puzzle.placements} />
+              <WordList placements={result.puzzle.placements} showSolution={showSolution} />
             </Card>
           </div>
         ) : (

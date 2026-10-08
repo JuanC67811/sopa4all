@@ -50,6 +50,24 @@ describe('usePuzzleGenerator', () => {
     expect(result.current.settings.size).toBe(MAX_SIZE)
   })
 
+  it('muestra y oculta la solución', () => {
+    const { result } = setup()
+    expect(result.current.showSolution).toBe(false)
+    act(() => result.current.toggleSolution())
+    expect(result.current.showSolution).toBe(true)
+    act(() => result.current.toggleSolution())
+    expect(result.current.showSolution).toBe(false)
+  })
+
+  it('oculta la solución al generar una sopa nueva', () => {
+    const { result } = setup()
+    act(() => result.current.setWordsText('sol'))
+    act(() => result.current.generate())
+    act(() => result.current.toggleSolution())
+    act(() => result.current.generate())
+    expect(result.current.showSolution).toBe(false)
+  })
+
   it('no permite generar sin direcciones', () => {
     const { result } = setup()
     act(() => {
