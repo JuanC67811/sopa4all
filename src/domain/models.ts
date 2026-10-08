@@ -1,6 +1,8 @@
 /** Direcciones en las que se puede colocar una palabra. */
 export type Direction = 'horizontal' | 'vertical' | 'diagonalDown' | 'diagonalUp'
 
+export const ALL_DIRECTIONS: Direction[] = ['horizontal', 'vertical', 'diagonalDown', 'diagonalUp']
+
 /** Una celda de la cuadrícula. row = fila (de arriba abajo), col = columna (de izquierda a derecha). */
 export interface Position {
   row: number
@@ -57,6 +59,6 @@ export const MAX_SIZE = 30
 
 export const DEFAULT_CONFIG: PuzzleSettings = {
   size: 15,
-  directions: ['horizontal', 'vertical', 'diagonalDown', 'diagonalUp'],
+  directions: ALL_DIRECTIONS,
   allowReversed: false,
 }

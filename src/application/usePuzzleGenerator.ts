@@ -38,5 +38,5 @@ export function usePuzzleGenerator(random: RandomFn = Math.random) {
     setResult(generatePuzzle({ ...settings, words }, random))
   }, [canGenerate, settings, words, random])
 
-  return { wordsText, setWordsText, settings, updateSettings, canGenerate, generate, result }
+  return { wordsText, setWordsText, words, settings, updateSettings, canGenerate, generate, result }
 }
