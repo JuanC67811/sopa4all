@@ -1,0 +1,13 @@
+// Publicación en Cloudflare (Workers con archivos estáticos): solo se sirve `dist`.
+// No hay código de servidor: toda la app corre en el navegador.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sopa4all",
+  "compatibility_date": "2026-10-06",
+  "workers_dev": true,
+  // Sin URLs de vista previa por versión: solo existe la versión publicada.
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+  },
+}

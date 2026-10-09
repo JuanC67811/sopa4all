@@ -4,7 +4,7 @@
 
 Generador de sopas de letras personalizadas: escribe tu lista de palabras, elige tamaño y direcciones, y obtén una sopa lista para jugar en pantalla o imprimir en PDF.
 
-**[Probar la demo →](https://juanc67811.github.io/sopa4all/)**
+**[Probar la demo →](https://sopa4all.rifas4all.workers.dev)** · [copia en GitHub Pages](https://juanc67811.github.io/sopa4all/)
 
 | Modo claro | Modo oscuro |
 | --- | --- |
@@ -22,7 +22,7 @@ Generador de sopas de letras personalizadas: escribe tu lista de palabras, elige
 
 ## Tecnologías
 
-React 19 · TypeScript · Vite · Tailwind CSS 4 · Vitest · Testing Library · jsPDF · GitHub Actions
+React 19 · TypeScript · Vite · Tailwind CSS 4 · Vitest · Testing Library · jsPDF · GitHub Actions · Cloudflare Workers
 
 ## Arquitectura
 
@@ -82,10 +82,11 @@ npm run dev
 | `npm run test` | Tests en modo observador |
 | `npm run lint` | Linter (oxlint) |
 | `npm run build` | Compila la versión de producción en `dist/` |
+| `npm run deploy` | Compila y publica en Cloudflare Workers (requiere `wrangler login`) |
 
 ## Tests
 
-Más de 70 tests con Vitest y Testing Library cubren el dominio (normalización, colocación, relleno, ambigüedad), los hooks, la maquetación del PDF y la app completa simulando a un usuario. GitHub Actions ejecuta lint, tests y compilación en cada push antes de publicar en GitHub Pages.
+Más de 70 tests con Vitest y Testing Library cubren el dominio (normalización, colocación, relleno, ambigüedad), los hooks, la maquetación del PDF y la app completa simulando a un usuario. GitHub Actions ejecuta lint, tests y compilación en cada push y publica una copia en GitHub Pages. La versión principal se publica en Cloudflare Workers con `npm run deploy`.
 
 ## Estructura
 

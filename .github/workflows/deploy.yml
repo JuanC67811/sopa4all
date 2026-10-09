@@ -29,6 +29,8 @@ jobs:
       - run: npm run lint
       - run: npm run test -- --run
       - run: npm run build
+        env:
+          BASE_PATH: /sopa4all/
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:
